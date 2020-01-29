@@ -1,0 +1,122 @@
+App\Models\Doctrine\UserTab:
+    type: entity
+    table: user_tab
+    indexes:
+        FK_USER_ROLE:
+            columns:
+                - RoleId
+    uniqueConstraints:
+        UNIQUE_EMAIL:
+            columns:
+                - Email
+    id:
+        userid:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+                comment: Identifiant
+            id: true
+            column: UserId
+            generator:
+                strategy: IDENTITY
+    fields:
+        firstname:
+            type: string
+            nullable: false
+            length: 92
+            options:
+                fixed: false
+                comment: !!binary UHLpbm9t
+            column: FirstName
+        lastname:
+            type: string
+            nullable: false
+            length: 92
+            options:
+                fixed: false
+                comment: Nom
+            column: LastName
+        password:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+                comment: 'Mot de passe'
+            column: Password
+        email:
+            type: string
+            nullable: false
+            length: 64
+            options:
+                fixed: false
+                comment: 'Adresse mail'
+            column: Email
+        phone:
+            type: string
+            nullable: false
+            length: 32
+            options:
+                fixed: false
+                comment: !!binary TnVt6XJvIGRlIHTpbOlwaG9uZQ==
+            column: Phone
+        streetno:
+            type: string
+            nullable: true
+            length: 32
+            options:
+                fixed: false
+                comment: !!binary TnVt6XJvIGRlIHJ1ZQ==
+            column: StreetNo
+        streetname:
+            type: string
+            nullable: true
+            length: 64
+            options:
+                fixed: false
+                comment: 'Nom de rue'
+            column: StreetName
+        city:
+            type: string
+            nullable: true
+            length: 64
+            options:
+                fixed: false
+                comment: Ville
+            column: City
+        postalcode:
+            type: string
+            nullable: true
+            length: 16
+            options:
+                fixed: false
+                comment: 'Code postal'
+            column: PostalCode
+        country:
+            type: string
+            nullable: true
+            length: 64
+            options:
+                fixed: false
+                comment: Pays
+            column: Country
+        gender:
+            type: string
+            nullable: true
+            length: 64
+            options:
+                fixed: false
+            column: Genre
+    manyToOne:
+        roleid:
+            targetEntity: App\Models\Doctrine\RoleTab
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                RoleId:
+                    referencedColumnName: Code
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

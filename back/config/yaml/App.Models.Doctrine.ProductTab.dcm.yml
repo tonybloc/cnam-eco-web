@@ -1,0 +1,92 @@
+App\Models\Doctrine\ProductTab:
+    type: entity
+    table: product_tab
+    indexes:
+        FK_PRODUCT_SUBCATEGORY:
+            columns:
+                - CodeSubCategory
+        FK_PRODUCT_BRAND:
+            columns:
+                - BrandNo
+    id:
+        code:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+                comment: 'Code produit'
+            id: true
+            column: Code
+            generator:
+                strategy: IDENTITY
+    fields:
+        reference:
+            type: string
+            nullable: false
+            length: 32
+            options:
+                fixed: false
+                comment: !!binary Uulm6XJlbmNlIGZvdXJuaXNzZXVy
+            column: Reference
+        title:
+            type: string
+            nullable: false
+            length: 128
+            options:
+                fixed: false
+                comment: !!binary SW50aXRpdWzp
+            column: Title
+        description:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+                comment: Description
+            column: Description
+        unitprice:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+            options:
+                comment: 'Prix de vente (unitaire)'
+            column: UnitPrice
+        picture:
+            type: text
+            nullable: false
+            lenght: 65535
+            options:
+                fixed : false
+                comment: Image
+            column: Picture
+        gender:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+                comment: 'Genre'
+            column: Gender
+    manyToOne:
+        brandno:
+            targetEntity: App\Models\Doctrine\BrandTab
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                BrandNo:
+                    referencedColumnName: 'No'
+            orphanRemoval: false
+        codesubcategory:
+            targetEntity: App\Models\Doctrine\ProductSubcategoryTab
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                CodeSubCategory:
+                    referencedColumnName: Code
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

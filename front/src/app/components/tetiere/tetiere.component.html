@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" routerLink="home" routerLinkActive="active">Angular Shop</a> 
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>   
+    <div class="collapse navbar-collapse" id="navbarToggler">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+                <a class="nav-link" routerLink="catalog">Catalogue de produits</a>
+            </li>
+        </ul>
+        <div class="fmy-2 my-lg-0">
+            <a routerLink="cart">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="badge badge-pill badge-info">{{ cartTotal }}</span>
+            </a>
+            <a class="btn btn-light" *ngIf="!(isAuthenticated | async)" routerLink="/auth/signin" type="submit">Connexion</a>
+            <a class="btn btn-light" *ngIf="!(isAuthenticated | async)" routerLink="/auth/signup" type="submit">Inscription</a>            
+            <a class="btn btn-light" *ngIf="(isAuthenticated | async)" routerLink="/auth/info" type="submit">Mon Compte</a>
+            <a class="btn btn-light" *ngIf="(isAuthenticated | async)" type="submit" (click)="onSignOut()">Deconnexion</a>
+        </div>
+    </div>
+</nav>

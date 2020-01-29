@@ -1,0 +1,39 @@
+App\Models\Doctrine\ProductSubcategoryTab:
+    type: entity
+    table: product_subcategory_tab
+    indexes:
+        FK_CATEGORY_SUBCATEGORY:
+            columns:
+                - ParentGroupCode
+    id:
+        code:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+                comment: !!binary Q29kZSBzb3VzIGNhdOlnb3JpZQ==
+            id: true
+            column: Code
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 128
+            options:
+                fixed: false
+                comment: !!binary Tm9tIGRlIGxhIHNvdXMgY2F06Wdvcmll
+            column: Name
+    manyToOne:
+        parentgroupcode:
+            targetEntity: App\Models\Doctrine\ProductCategoryTab
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                ParentGroupCode:
+                    referencedColumnName: Code
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

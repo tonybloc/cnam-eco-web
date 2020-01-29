@@ -1,0 +1,23 @@
+<div class="row">
+    <div class="d-flex justify-content-center">
+        <div class="card shadow-sm" *ngIf="Article | async as article; else loading">            
+            <img src="{{ article.product.picture }}" class="card-img-top" alt="{{ article.title }}">
+            <div class="card-body">
+                <span><small class="text-muted">{{ article.product.brand.name }} - {{ article.product.reference }}</small></span>
+                <h5 class="card-title">{{ article.product.title }}</h5> 
+                <p>Description:</p>
+                <p>{{article.product.description}}</p>                  
+                <p>Materiels:</p>
+                <p class="card-text">Prix: {{ article.product.unitprice | money }}</p>
+                <p class="card-text"><small class="text-muted">{{ article.product.subcategory.name }} | {{ article.product.reference }}</small></p>
+            </div>
+            <div class="card-footer text-center">
+                <button class="btn btn-primary" (click)="AddToCart(item)">Ajouter</button>
+            </div>
+        </div>
+        <ng-template #loading>
+            
+        </ng-template>
+    </div> 
+</div>
+

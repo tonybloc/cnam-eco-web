@@ -1,0 +1,20 @@
+{
+    "lang": "FR",
+    "data": [
+        {
+            "code" : "MARK00001",
+            "name" : "Hermès",
+            "logo" : ""
+        },
+        {
+            "code" : "MARK00002",
+            "name" : "Gucci",
+            "logo" : ""
+        },
+        {
+            "code" : "MARK00003",
+            "name" : "Chanel",
+            "logo" : ""
+        }
+    ]
+}

@@ -1,0 +1,40 @@
+App\Models\Doctrine\BrandTab:
+    type: entity
+    table: brand_tab
+    id:
+        'no':
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+                comment: 'Identifiant de la marque'
+            id: true
+            column: 'No'
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 128
+            options:
+                fixed: false
+                comment: 'Nom de la marque'
+            column: Name
+        description:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+                comment: 'Description de la marque'
+            column: Description
+        logo:
+            type: text
+            nullable: false
+            lenght: 65535
+            options:
+                fixed : false
+                comment: Logo
+            column: Logo
+    lifecycleCallbacks: {  }

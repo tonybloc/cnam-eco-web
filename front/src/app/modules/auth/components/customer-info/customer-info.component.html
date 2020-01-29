@@ -1,0 +1,26 @@
+<div *ngIf="(user | async) as customer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <p>Nom : <strong>{{customer.firstname}}</strong></p>
+                <p>Prénom : <strong>{{customer.lastname}}</strong></p>
+                <p>Adresse mail : <strong>{{customer.email}}</strong></p>
+                <p>Numéro de téléphone : <strong>{{customer.phone}}</strong></p>
+            </div>
+            <div class="col-md-6">
+                <p>Pays : <strong>{{customer.country}}</strong></p>
+                <p>Ville : <strong>{{customer.city}}</strong></p>
+                <p>Code postal : <strong>{{customer.postalcode}}</strong></p>
+                <p>Adresse : <strong>{{customer.streetname}}</strong></p>
+                <p>Numéro de rue : <strong>{{customer.streetno}}</strong></p>
+            </div>
+        </div>
+
+        <div>
+            <button type="button" class="btn btn-primary" routerLink="/auth/update">Modifier mon compte</button>
+            <button type="button" class="btn btn-danger" (click)="onDelete()">Supprimer</button>
+        </div>
+
+
+    </div>
+</div>

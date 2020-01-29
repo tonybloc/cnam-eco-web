@@ -1,0 +1,62 @@
+<!-- Authentication form -->
+<form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+
+    <h2>Connexion</h2>
+
+    <div class="form-group">
+
+        <!-- Login field -->
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <div class="input-group-text"><i class="fas fa-user"></i></div>
+            </div>
+            <input type="email" formControlName="login" class="form-control" placeholder="Adresse mail"
+                [ngClass]="{ 'is-invalid': isSubmitted && form.login.errors }">
+        </div>
+
+        <!-- Login validation messages -->
+        <small class="form-text text-muted" *ngIf="isSubmitted && form.login.errors?.required">
+            L'identifiant est requis.
+        </small>
+        <small class="form-text text-muted" *ngIf="isSubmitted && form.login.errors?.pattern">
+            Vous devez vous enregistrer avec une adresse mail valide.
+        </small>
+
+    </div>
+
+    <div class="form-group">
+
+        <!-- Password field -->
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <div class="input-group-text"><i class="fas fa-key"></i></div>
+            </div>
+            <input type="password" formControlName="password" class="form-control" placeholder="Mot de passe"
+                aria-describedby="passwordHelp" [ngClass]="{ 'is-invalid': isSubmitted && form.password.errors }">
+        </div>
+        <small id="passwordHelp" class="form-text text-muted"
+            [ngClass]="{ 'is-invalid': isSubmitted && form.password.errors }">
+            Votre mot de passe doit contenir au minimum 8 charactère.
+        </small>
+
+        <!-- Password validation message -->
+        <small class="form-text text-muted" *ngIf="isSubmitted && form.password.errors?.required">
+            Le mots de passe est requis.
+        </small>
+        <small class="form-text text-muted" *ngIf="isSubmitted && form.password.errors?.minlength">
+            Le mots de passe doit contenir au moins 8 charactère.
+        </small>
+    </div>
+
+    <!-- Submit button -->
+    <button class="btn btn-primary">Se connecter</button>
+
+</form>
+
+<div *ngIf="invalideLogin" class="alert alert-danger" role="alert">
+    <strong>Identifiant invalide !</strong> Votre login ou votre mot de passe est invalide. Veuillez vérifier les
+        informations saisies, puis réessayer.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>

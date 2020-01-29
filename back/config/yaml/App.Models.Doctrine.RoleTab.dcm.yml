@@ -1,0 +1,24 @@
+App\Models\Doctrine\RoleTab:
+    type: entity
+    table: role_tab
+    id:
+        code:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+                comment: !!binary SWRlbnRpZmlhbnQgZHUgcvRsZQ==
+            id: true
+            column: Code
+            generator:
+                strategy: IDENTITY
+    fields:
+        title:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+                comment: !!binary SW50aXR1bOkgZHUgcvRsZQ==
+            column: Title
+    lifecycleCallbacks: {  }

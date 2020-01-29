@@ -1,0 +1,62 @@
+<div>
+    <!-- Search form -->
+    <form [formGroup]="searchForm" (ngSubmit)="onSubmit">
+        <div class="input-group mb-3 shadow-sm rounded-pill">
+            <div class="input-group-prepend">                
+                <span class="btn"><i class="fas fa-search"></i></span>
+            </div>
+            <input type="search" id="filter-item-name" class="form-control" placeholder="Effectuez une recherche d'article" formControlName="name" >
+            <div class="input-group-append">
+                <button class="btn btn-light" type="button" data-toggle="collapse" data-target="#search-filter" aria-expanded="false" aria-controls="search-filter">Filtre <i class="fas fa-chevron-down fa-sm"></i></button>
+                <button class="btn btn-light rounded-pill-right" (click)="onSubmit()">Rechercher</button>
+            </div>
+        </div>   
+        
+        <div class="collapse" id="search-filter">
+            <div class="card">
+                <div class="card-header">
+                    <span>Ajoutez un filtre de recherche</span>
+                </div>
+                <div class="card-body">
+                    <div class="form-row">
+                        <div class="col form-group">
+                            <label for="filter-item-min-price">Prix minimum</label>
+                            <input type="number" id="filter-item-min-price" class="form-control" placeholder="Prix Min" min="0" formControlName="min_price">                            
+                        </div>
+                        <div class="col form-group">
+                            <label for="filter-item-max-price">Prix maximum</label>
+                            <input type="number" id="filter-item-max-price" class="form-control" placeholder="Prix Max" min="0" formControlName="max_price">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col form-group">
+                            <label for="filter-item-genre">Genre</label>
+                            <select id="filter-item-genre" formControlName="genre" class="form-control">
+                                <option value="" disabled>Selectionnez un genre</option>
+                                <option *ngFor="let g of genres" [ngValue]="g">{{g}}</option>
+                            </select>  
+                        </div>
+                        <div class="col form-group">
+                            <label for="filter-item-brand">Marque</label>
+                            <select id="filter-item-brand" formControlName="brand" class="form-control">
+                                <option value="" disabled>Selectionnez une marque</option>
+                                <option *ngFor="let b of Brands | async" [ngValue]="b.name">{{b.name}}</option>
+                            </select>      
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col form-group">
+                            <label for="filter-item-genre">Catégorie</label>
+                            <select id="filter-item-genre" formControlName="category" class="form-control">
+                                <option value="" disabled>Selectionnez une catégorie</option>
+                                <option *ngFor="let c of SubCategory | async" [ngValue]="c.name">{{c.name}}</option>
+                            </select>  
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" (click)="onSubmit()">Rechercher</button>
+                    <button class="btn btn-primary" (click)="clearFilter()">Vider filtre</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

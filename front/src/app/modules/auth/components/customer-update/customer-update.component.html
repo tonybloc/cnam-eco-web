@@ -1,0 +1,240 @@
+<form *ngIf="(user | async); else loading" [formGroup]="registerForm" (ngSubmit)="onSubmit()"
+    [mustMatch]="['password', 'passwordConfirmation']">
+    <h2>Mise à jour du compte</h2>
+
+    <p>Remarques : Les champs annotés avec une astérique (<span class="mendatory">*</span>) sont des champs
+        obligatoires.</p>
+    <!-- Basic information -->
+    <div class="">
+
+        <!-- Lastname field -->
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label"><span class="mendatory">*</span>Nom</label>
+
+            <div class="col-sm-10">
+                <input type="text" formControlName="lastname" class="form-control"
+                    [ngClass]="{ 'is-invalid': isSubmitted && form.lastname.errors }">
+                <div *ngIf="isSubmitted && form.lastname.errors" class="invalid-feedback">
+                    <span *ngIf="form.lastname.errors.required" class="form-text text-muted">Le nom est requis.</span>
+                    <span *ngIf="form.lastname.errors.pattern" class="form-text text-muted">Le nom doit contenir
+                        uniquement des lettres minuscules,
+                        majuscules et des nombres</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Firstname field -->
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label"><span class="mendatory">*</span>Prénom</label>
+
+            <div class="col-sm-10">
+                <input type="text" formControlName="firstname" class="form-control"
+                    [ngClass]="{ 'is-invalid': isSubmitted && form.firstname.errors }">
+                <div *ngIf="isSubmitted && form.firstname.errors" class="invalid-feedback">
+                    <span *ngIf="form.firstname.errors.required" class="form-text text-muted">Le prénom est
+                        requis.</span>
+                    <span *ngIf="form.firstname.errors.pattern" class="form-text text-muted">Le prénom doit contenir
+                        uniquement des lettres minuscules,
+                        majuscules et des nombres</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Civility field -->
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label"><span class="mendatory">*</span>Civilité</label>
+
+            <div class="col-sm-10">
+                <select formControlName="gender" class="form-control"
+                    [ngClass]="{ 'is-invalid': isSubmitted && form.gender.errors }">
+                    <div *ngIf="isSubmitted && form.gender.errors" class="invalid-feedback">
+                        <span *ngIf="form.gender.errors.required" class="form-text text-muted">Civilité est
+                            requise.</span>
+                    </div>
+                    <option *ngFor="let g of genders" [ngValue]="g">
+                        {{g}}
+                    </option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact information -->
+    <div>
+        <h3>Informations de contact</h3>
+
+        <!-- Email field -->
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label"><span class="mendatory">*</span>Adresse
+                mail</label>
+            <div class="col-sm-10">
+                <input type="email" formControlName="email" class="form-control"
+                    [ngClass]="{ 'is-invalid': isSubmitted && form.email.errors }">
+                <div *ngIf="isSubmitted && form.email.errors" class="invalid-feedback">
+                    <span *ngIf="form.email.errors.required" class="form-text text-muted">L'adresse mail est
+                        requise.</span>
+                    <span *ngIf="form.email.errors.pattern" class="form-text text-muted">L'adresse mail n'est pas
+                        valide.</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phone field -->
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label"><span class="mendatory">*</span>Téléphone</label>
+
+            <div class="col-sm-10">
+                <input type="tel" formControlName="phone" class="form-control"
+                    [ngClass]="{ 'is-invalid': isSubmitted && form.phone.errors }">
+                <div *ngIf="isSubmitted && form.phone.errors" class="invalid-feedback">
+                    <span *ngIf="form.phone.errors.required" class="form-text text-muted">Le numéro de téléphone est
+                        requis.</span>
+                    <span *ngIf="form.phone.errors.pattern" class="form-text text-muted">Le numéro de téléphone n'est
+                        pas valide.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Authentication information -->
+    <div>
+        <h3>Information de connexion</h3>
+
+        <p>Remarque : Votre adresse mail sera votre identifiant de connexion.</p>
+
+        <!-- Password field -->
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label"><span class="mendatory">*</span>Mot de
+                passe</label>
+
+            <div class="col-sm-10">
+                <input type="password" formControlName="password" class="form-control" aria-describedby="passwordHelp"
+                    [ngClass]="{ 'is-invalid': isSubmitted && form.password.errors }">
+                <small id="passwordHelp" class="form-text text-muted">
+                    Votre mot de passe doit contenir au minimum {{minPasswordLength}} charactères.
+                </small>
+                <div *ngIf="isSubmitted && form.password.errors" class="invalid-feedback">
+                    <span *ngIf="form.password.errors.required" class="form-text text-muted">Le mot de passe est
+                        requis.</span>
+                    <span *ngIf="form.password.errors.minlength" class="form-text text-muted">Le mot de passe doit
+                        contenir au moins {{minPasswordLength}} charactère.
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Password confirmation field -->
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label"><span class="mendatory">*</span>Confirmation du mot de passe</label>
+
+            <div class="col-sm-10">
+                <input type="password" formControlName="passwordConfirmation" class="form-control"
+                    [ngClass]="{ 'is-invalid': isSubmitted && form.passwordConfirmation.errors }">
+                <div *ngIf="isSubmitted && form.passwordConfirmation.errors" class="invalid-feedback">
+                    <span *ngIf="form.passwordConfirmation.errors.required" class="form-text text-muted">Le mot de
+                        passe de confirmation est requis.
+                    </span>
+                    <span *ngIf="form.passwordConfirmation.errors.mustMatch" class="form-text text-muted">Le mot de
+                        passe ne correspond pas.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Address information -->
+    <div>
+        <h3>Localisation</h3>
+
+        <!-- Country field -->
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label"><span class="mendatory">*</span>Pays</label>
+            <div class="col-sm-10">
+                <select formControlName="country" class="form-control"
+                    [ngClass]="{ 'is-invalid': isSubmitted && form.country.errors }">
+                    <div *ngIf="isSubmitted && form.country.errors" class="invalid-feedback">
+                        <span *ngIf="form.country.errors.required" class="form-text text-muted">Le pays est
+                            requis.</span>
+                    </div>
+                    <option *ngFor="let c of countries" [ngValue]="c">
+                        {{c}}
+                    </option>
+                </select>
+            </div>
+        </div>
+
+        <!-- City field -->
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label"><span class="mendatory">*</span>Ville</label>
+
+            <div class="col-sm-10">
+                <input type="text" formControlName="city" class="form-control"
+                    [ngClass]="{ 'is-invalid': isSubmitted && form.city.errors }">
+                <div *ngIf="isSubmitted && form.city.errors" class="invalid-feedback">
+                    <span *ngIf="form.city.errors.required" class="form-text text-muted">La ville est requise.</span>
+                    <span *ngIf="form.city.errors.pattern" class="form-text text-muted">Une ville valide comprends
+                        uniquement
+                        des lettres </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Postal code field -->
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label"><span class="mendatory">*</span>Code postal</label>
+
+            <div class="col-sm-10">
+                <input type="text" formControlName="postalcode" class="form-control"
+                    [ngClass]="{ 'is-invalid': isSubmitted && form.postalcode.errors }">
+                <div *ngIf="isSubmitted && form.postalcode.errors" class="invalid-feedback">
+                    <span *ngIf="form.postalcode.errors.required" class="form-text text-muted">Le code postal est
+                        requis.</span>
+                    <span *ngIf="form.postalcode.errors.pattern" class="form-text text-muted">Un code postal valide comprend
+                        des nombres et/ou des lettres
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Address field -->
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label"><span class="mendatory">*</span>Rue</label>
+
+            <div class="col-sm-10">
+                <input type="text" formControlName="streetname" class="form-control"
+                    [ngClass]="{ 'is-invalid': isSubmitted && form.streetname.errors }">
+                <div *ngIf="isSubmitted && form.streetname.errors" class="invalid-feedback">
+                    <span *ngIf="form.streetname.errors.required" class="form-text text-muted">L'adresse est
+                        requise.</span>
+                    <span *ngIf="form.streetname.errors.pattern" class="form-text text-muted">Une adresse valide
+                        comprend des nombres et/ou des lettres
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Address field -->
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label"><span class="mendatory">*</span>Numéro de rue</label>
+
+            <div class="col-sm-10">
+                <input type="text" formControlName="streetno" class="form-control"
+                    [ngClass]="{ 'is-invalid': isSubmitted && form.streetno.errors }">
+                <div *ngIf="isSubmitted && form.streetno.errors" class="invalid-feedback">
+                    <span *ngIf="form.streetno.errors.required" class="form-text text-muted">Le numéro de rue est
+                        requis</span>
+                    <span *ngIf="form.streetno.errors.pattern" class="form-text text-muted">Le numéro de rue est
+                        invalide</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Submit button -->
+    <button class="btn btn-primary">Modifier</button>
+    <button class="btn btn-primary" routerLink="/auth/info">Annuler</button>
+</form>
+
+<ng-template #loading>
+    Loading User..
+</ng-template>

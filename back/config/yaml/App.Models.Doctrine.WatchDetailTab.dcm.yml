@@ -1,0 +1,87 @@
+App\Models\Doctrine\WatchDetailTab:
+    type: entity
+    table: watch_detail_tab
+    id:
+        code:
+            associationKey: true
+    fields:
+        description:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+                comment: 'Description fournisseur'
+            column: Description
+        box:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+                comment: Boitier
+            column: Box
+        lugs:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: Lugs
+        crown:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+                comment: Courrone
+            column: Crown
+        strap:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+                comment: Bracelet
+            column: Strap
+        hands:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+                comment: Aiguille
+            column: Hands
+        bezel:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: Bezel
+        crystal:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: Crystal
+        dial:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: Dial
+    oneToOne:
+        code:
+            targetEntity: App\Models\Doctrine\ProductTab
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                Code:
+                    referencedColumnName: Code
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

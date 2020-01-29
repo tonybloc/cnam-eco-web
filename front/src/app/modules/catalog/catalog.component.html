@@ -1,0 +1,25 @@
+<div>
+    <article-search (onSearch)="onFilter($event)" ></article-search>
+</div>
+
+<div class="row">
+    <div class="col-xs-1 col-sm-6 col-md-4 col-lg-4" *ngFor="let item of Articles | async">
+        
+        <div class="card shadow-sm custom-card">
+            <img src="{{ item.picture }}" class="card-img-top" alt="{{ item.title }}">
+            
+            <div class="card-body">
+                <span><small class="text-muted">{{ item.brand.name }} - {{ item.reference }}</small></span>
+                <h5 class="card-title">{{ item.title }}</h5>    
+                <p class="card-text">{{ item.unitprice | money }}</p>
+                <p class="card-text"><small class="text-muted">{{ item.subcategory.name }}</small></p>
+            </div>
+            <div class="card-footer text-center">
+                <div class="d-flex justify-content-around">
+                    <button class="btn btn-primary" (click)="AddToCart(item)">Ajouter</button>
+                    <button class="btn btn-primary" [routerLink]="['detail', item.code]">Détails</button>
+                </div>               
+            </div>            
+        </div>        
+    </div> 
+</div>
