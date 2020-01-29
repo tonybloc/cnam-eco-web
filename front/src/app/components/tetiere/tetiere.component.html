@@ -17,7 +17,7 @@
             <a class="btn btn-light" *ngIf="!(isAuthenticated | async)" routerLink="/auth/signin" type="submit">Connexion</a>
             <a class="btn btn-light" *ngIf="!(isAuthenticated | async)" routerLink="/auth/signup" type="submit">Inscription</a>            
             <a class="btn btn-light" *ngIf="(isAuthenticated | async)" routerLink="/auth/info" type="submit">Mon Compte</a>
-            <a class="btn btn-light" *ngIf="(isAuthenticated | async)" type="submit" (click)="onSignOut()">Deconnexion</a>
+            <a class="btn btn-light" *ngIf="(isAuthenticated | async)" type="submit" (click)="onSignOut()">Déconnexion</a>
         </div>
     </div>
 </nav>

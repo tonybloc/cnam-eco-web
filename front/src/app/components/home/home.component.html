@@ -1,16 +1,10 @@
 
 <div class="container">
     <div class="d-flex flex-row justify-content-center align-items-center">   
-        <h1>Bienvenu sur le site e-commerce</h1>  
+        <h1>Bienvenue sur le site e-commerce</h1>  
     </div>    
 </div>
 
-
-<div *ngIf="!(isAuthenticated | async)">
-    <div>
-        <p>Bonjour !</p>
-    </div>
-</div>
 <div *ngIf="(isAuthenticated | async)">
     <div *ngIf="(user | async) as customer">
         <p>Bonjour <strong>{{customer.firstname}} {{customer.lastname}}</strong>!</p>  
